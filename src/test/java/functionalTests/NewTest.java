@@ -3,6 +3,7 @@ package functionalTests;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
@@ -22,13 +23,14 @@ public class NewTest {
 	
  @BeforeTest
  public void runBefore() {
-	 System.setProperty("webdriver.chrome.driver", "/Users/tarunkumar/Documents/selenium/chromedriver");
-	 ChromeOptions options = new ChromeOptions();
-	 options.addArguments("--incongito");
-	 DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-	 capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-	 driver = new ChromeDriver(options);
-	 driver.get("https://www.amazon.com");
+//	 System.setProperty("webdriver.chrome.driver", "/Users/tarunkumar/Documents/selenium/chromedriver");
+//	 ChromeOptions options = new ChromeOptions();
+//	 options.addArguments("--incongito");
+//	 DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+//	 capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+	 System.setProperty("webdriver.gecko.driver", "/Users/tarunkumar/Desktop/geckodriver 3");
+	 driver = new FirefoxDriver();
+	 driver.get("https://www.amazon.com/");
 }
 
  
@@ -70,7 +72,7 @@ public class NewTest {
 	 Homepage homePage = PageFactory.initElements(driver, Homepage.class);
 	 ProductListingPage productListingPage = PageFactory.initElements(driver, ProductListingPage.class);
 	 ProductDetailPage productDetailPage = PageFactory.initElements(driver, ProductDetailPage.class);
-	 Thread.sleep(2000);
+	 Thread.sleep(5000);
 	 homePage.hoverOverDepartmentButton();
 	 homePage.clickElectronics();
 	 Thread.sleep(2000);
@@ -78,10 +80,11 @@ public class NewTest {
 	 Thread.sleep(2000);
 	 productListingPage.clickOnFirstHeadPhone();
 	 productDetailPage.clickAddToCartButton();
-	 Thread.sleep(2000);
-	 
-	 
-	 }
+	 Thread.sleep(5000);
+	 homePage.enterTextInSearchBox("Macbook pro");
+	 homePage.hitSearchButton();
+	 Thread.sleep(4000);
+}
  
  @AfterTest
  public void afterMethod() {
