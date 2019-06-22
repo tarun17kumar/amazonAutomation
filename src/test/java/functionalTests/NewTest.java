@@ -2,7 +2,9 @@ package functionalTests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -11,6 +13,8 @@ import org.testng.annotations.Test;
 
 import pageFactory.Homepage;
 import pageFactory.Loginpage;
+import pageFactory.ProductDetailPage;
+import pageFactory.ProductListingPage;
 
 public class NewTest {
 	
@@ -19,8 +23,12 @@ public class NewTest {
  @BeforeTest
  public void runBefore() {
 	 System.setProperty("webdriver.chrome.driver", "/Users/tarunkumar/Documents/selenium/chromedriver");
-	 driver = new ChromeDriver();
-	 driver.get("https://amazon.com");
+	 ChromeOptions options = new ChromeOptions();
+	 options.addArguments("--incongito");
+	 DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+	 capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+	 driver = new ChromeDriver(options);
+	 driver.get("https://www.amazon.com");
 }
 
  
@@ -60,14 +68,20 @@ public class NewTest {
  public void addEarphonesTocart() throws InterruptedException {
 	 
 	 Homepage homePage = PageFactory.initElements(driver, Homepage.class);
+	 ProductListingPage productListingPage = PageFactory.initElements(driver, ProductListingPage.class);
+	 ProductDetailPage productDetailPage = PageFactory.initElements(driver, ProductDetailPage.class);
 	 Thread.sleep(2000);
 	 homePage.hoverOverDepartmentButton();
 	 homePage.clickElectronics();
 	 Thread.sleep(2000);
-
+	 productListingPage.clickOnHeadphoneCategory();
+	 Thread.sleep(2000);
+	 productListingPage.clickOnFirstHeadPhone();
+	 productDetailPage.clickAddToCartButton();
+	 Thread.sleep(2000);
 	 
 	 
- }
+	 }
  
  @AfterTest
  public void afterMethod() {
