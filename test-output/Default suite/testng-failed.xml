@@ -6,8 +6,8 @@
       <class name="functionalTests.NewTest">
         <methods>
           <include name="runBefore"/>
-          <include name="f"/>
           <include name="afterMethod"/>
+          <include name="addEarphonesTocart"/>
         </methods>
       </class> <!-- functionalTests.NewTest -->
     </classes>

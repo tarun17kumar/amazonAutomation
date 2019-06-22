@@ -34,7 +34,7 @@ public class NewTest {
 	 Thread.sleep(2000);
   }
  
- @Test(enabled=true)
+ @Test(enabled=false)
  public void userlogin() {
 	 
 	 Homepage homePage = PageFactory.initElements(driver, Homepage.class);
@@ -54,6 +54,19 @@ public class NewTest {
 	 Actions action = new Actions(driver);
 	 action.moveToElement(homePage.btn_signIn).build().perform();
 	 homePage.clickSignout();
+ }
+ 
+ @Test(enabled=true)
+ public void addEarphonesTocart() throws InterruptedException {
+	 
+	 Homepage homePage = PageFactory.initElements(driver, Homepage.class);
+	 Thread.sleep(2000);
+	 homePage.hoverOverDepartmentButton();
+	 homePage.clickElectronics();
+	 Thread.sleep(2000);
+
+	 
+	 
  }
  
  @AfterTest
